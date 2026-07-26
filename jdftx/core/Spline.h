@@ -106,7 +106,7 @@ namespace QuinticSpline
 	
 	//Gradient propagation corresponding to value
 	//On the GPU, final results are accumulated using shared memory. (Uses 6 doubles per thread of the thread-block)
-	#ifdef __CUDA_ARCH__
+	#ifdef GPU_DEVICE_COMPILE
 	extern __shared__ double shared_E_coeff[];
 	#endif
 	__hostanddev__ void valueGrad(double E_value, double* E_coeff, double x)
@@ -128,7 +128,7 @@ namespace QuinticSpline
 		c[4] = (1./66) * (b[0] + 2*b[1] + 4*b[2] + 8*b[3] + 16*b[4] + 26*b[5]);
 		c[5] = (1./66) * (b[5]);
 		//Accumulate E_coeff:
-		#ifndef __CUDA_ARCH__
+		#ifndef GPU_DEVICE_COMPILE
 			for(int i=0; i<6; i++) E_coeff[j+i] += E_value * c[i];
 		#else
 			int iThread = threadIdx.x;

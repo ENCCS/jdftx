@@ -76,6 +76,12 @@ For GPU support, install the [CUDA SDK](http://developer.nvidia.com/cuda-toolkit
 and add <b>-D EnableCUDA=yes</b> to [options].
 If you get an unsupported compiler error, comment out the GCC version check from $CUDA_DIR/include/host_config.h.
 
+For AMD GPUs, install ROCm with HIP, hipBLAS and hipFFT, and add
+<b>-D EnableHIP=yes</b> to [options]. Set CMAKE_HIP_ARCHITECTURES to the target
+GPU architecture when CMake cannot infer it (for example, gfx90a for MI250X).
+The optional hipSOLVER path can be enabled with <b>-D EnableHipSolver=yes</b>.
+EnableCUDA and EnableHIP cannot be used in the same build directory.
+
 Also consider compiling with the following optional flags:
 
 + <b>-D PinnedHostMemory=yes</b>: use page-locked memory on the host (CPU) to speed up memory transfers to the GPU.

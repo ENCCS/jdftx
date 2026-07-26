@@ -23,9 +23,7 @@ along with JDFTx.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef GPU_ENABLED
 
 #include <cstdio>
-#include <cuda_runtime.h>
-#include <cublas_v2.h>
-#include <cufft.h>
+#include <core/GpuApi.h>
 #include <vector>
 
 //! @addtogroup Utilities
@@ -35,7 +33,6 @@ along with JDFTx.  If not, see <http://www.gnu.org/licenses/>.
 
 extern cublasHandle_t cublasHandle; //!< global handle to cublas (defined in GpuUtil.cpp)
 #ifdef CUSOLVER_ENABLED
-#include <cusolverDn.h>
 extern cusolverDnHandle_t cusolverHandle;  //!< global handle to cusolverDn (defined in GpuUtil.cpp)
 #endif
 

@@ -22,10 +22,7 @@ along with JDFTx.  If not, see <http://www.gnu.org/licenses/>.
 #define JDFTX_CORE_GPUKERNELUTILS_H
 
 #include <algorithm>
-#include <cuda_runtime.h>
-#include <cublas_v2.h>
-#include <driver_types.h>
-#include <vector_types.h>
+#include <core/GpuApi.h>
 #include <core/vector3.h>
 
 //! @addtogroup Utilities
@@ -37,7 +34,6 @@ along with JDFTx.  If not, see <http://www.gnu.org/licenses/>.
 extern cudaDeviceProp cudaDevProps; //!< cached properties of currently running device (defined in GpuUtil.cpp)
 extern cublasHandle_t cublasHandle; //!< global handle to cublas (defined in GpuUtil.cpp)
 #ifdef CUSOLVER_ENABLED
-#include <cusolverDn.h>
 extern cusolverDnHandle_t cusolverHandle;  //!< global handle to cusolverDn (defined in GpuUtil.cpp)
 #endif
 
@@ -47,7 +43,7 @@ struct GpuLaunchConfig
 	
 	//! Initialize the device and function properties
 	template<typename GpuKernel> GpuLaunchConfig(GpuKernel* gpuKernel)
-	{	cudaFuncGetAttributes(&attr, gpuKernel);
+	{	(void)cudaFuncGetAttributes(&attr, gpuKernel);
 	}
 };
 

@@ -87,7 +87,7 @@ void exchangeAnalytic_kernel(int zBlock, vector3<int> S, const matrix3<> GGT, co
 	data[i] *= kplusGsq<thresholdSq ? Vzero : calc(kplusGsq);
 }
 //Specialization for slab mode:
-template<> void exchangeAnalytic_kernel<ExchangeSlab_calc>(int zBlock,
+template<> __global__ void exchangeAnalytic_kernel<ExchangeSlab_calc>(int zBlock,
 	vector3<int> S, const matrix3<> GGT, const ExchangeSlab_calc calc,
 	complex* data, const vector3<> kDiff, double Vzero, double thresholdSq)
 {

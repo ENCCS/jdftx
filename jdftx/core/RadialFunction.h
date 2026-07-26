@@ -45,7 +45,7 @@ struct RadialFunctionG
 	//Access appropriate coefficients depending on whether called from CPU/GPU
 	__hostanddev__ const double* getCoeff() const
 	{
-		#ifdef __CUDA_ARCH__
+		#ifdef GPU_DEVICE_COMPILE
 		return coeffGpu;
 		#else
 		return coeff.data();

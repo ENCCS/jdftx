@@ -20,7 +20,6 @@ along with JDFTx.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/GpuKernelUtils.h>
 #include <core/BlasExtra_internal.h>
 #include <algorithm>
-#include <cublas_v2.h>
 #include <cfloat>
 #include <gsl/gsl_cblas.h>
 
